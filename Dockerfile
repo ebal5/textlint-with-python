@@ -1,21 +1,27 @@
 FROM node:12.8.1-alpine
 
 # ensure local python is preferred over distribution python
-ENV PATH /usr/local/bin:$PATH
+ENV PATH=/usr/local/bin:$PATH
 
 # http://bugs.python.org/issue19846
 # > At the moment, setting "LANG=C" on a Linux system *fundamentally breaks Python 3*, and that's not OK.
-ENV LANG C.UTF-8
+ENV LANG=C.UTF-8
 
 # install ca-certificates so that HTTPS works consistently
 # other runtime dependencies for Python are installed later
-RUN apk add --no-cache ca-certificates
 
-ENV GPG_KEY 0D96DF4D4110E5C43FBFB17F2D347EA6AA65421D
-ENV PYTHON_VERSION 3.7.4
+ENV GPG_KEY=0D96DF4D4110E5C43FBFB17F2D347EA6AA65421D
+ENV PYTHON_VERSION=3.7.4
+# if this is called "PIP_VERSION", pip explodes with "ValueError: invalid truth value '<VERSION>'"
+ENV PYTHON_PIP_VERSION=19.2.2
+# https://github.com/pypa/get-pip
+ENV PYTHON_GET_PIP_URL=https://github.com/pypa/get-pip/raw/0c72a3b4ece313faccb446a96c84770ccedc5ec5/get-pip.py
+ENV PYTHON_GET_PIP_SHA256=201edc6df416da971e64cc94992d2dd24bc328bada7444f0c4f2031ae31e8dad
 
-RUN set -ex \
-  && apk add --no-cache --virtual .fetch-deps \
+
+RUN set -ex ;\
+  apk add --no-cache ca-certificates && \
+  apk add --no-cache --virtual .fetch-deps \
   gnupg \
   tar \
   xz \
@@ -126,20 +132,13 @@ RUN set -ex \
   \) -exec rm -rf '{}' + \
   && rm -rf /usr/src/python \
   \
-  && python3 --version
-
-# make some useful symlinks that are expected to exist
-RUN cd /usr/local/bin \
+  && python3 --version ;\
+  # make some useful symlinks that are expected to exist
+  cd /usr/local/bin \
   && ln -s idle3 idle \
   && ln -s pydoc3 pydoc \
   && ln -s python3 python \
   && ln -s python3-config python-config
-
-# if this is called "PIP_VERSION", pip explodes with "ValueError: invalid truth value '<VERSION>'"
-ENV PYTHON_PIP_VERSION 19.2.2
-# https://github.com/pypa/get-pip
-ENV PYTHON_GET_PIP_URL https://github.com/pypa/get-pip/raw/0c72a3b4ece313faccb446a96c84770ccedc5ec5/get-pip.py
-ENV PYTHON_GET_PIP_SHA256 201edc6df416da971e64cc94992d2dd24bc328bada7444f0c4f2031ae31e8dad
 
 RUN set -ex; \
   \
@@ -159,10 +158,7 @@ RUN set -ex; \
   -o \
   \( -type f -a \( -name '*.pyc' -o -name '*.pyo' \) \) \
   \) -exec rm -rf '{}' +; \
-  rm -f get-pip.py
-
-RUN set -ex; \
-#  mkdir /work ;\
+  rm -f get-pip.py ;\
   pip3 install docutils-ast-writer==0.1.2 && \
   npm install --global \
   textlint \
