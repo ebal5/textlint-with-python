@@ -4,8 +4,8 @@
 
 A textlint docker image with python (for ReStructuredText).
 
-- [What-is-it?](##What-is-it?)
-- [How-to-use-this?](##How-to-use-this?)
+- [What is it?](##What-is-it?)
+- [How to use this?](##How-to-use-this?)
 - [Licenses](##Licenses)
 
 ## What is it?
