@@ -3,7 +3,7 @@
 A textlint docker image with python (for ReStructuredText).
 
 - [alpine-textlint-with-python](#alpine-textlint-with-python)
- + [What is it?][##What is it?]
+ + [What is it?](##What is it?)
  + [How to use this?](##How to use this?)
  + [Licenses](##Licenses)
 
@@ -15,17 +15,21 @@ To add support for ReStructuredText, this requires Python. That is why this name
 
 ## How to use this?
 
+```shell
+docker run -it --rm -v $(pwd):/root/doc  ebal/textlint-with-python textlint /root/doc
+```
+
 ### DockerHub
 
 ```shell
-$ docker pull ebal/textlint-with-python
+docker pull ebal/textlint-with-python
 ```
 
 ### Build
 
 ```shell
-$ docker build -t alpine-textlint-with-python .
-$ docker run -it --rm alpine-textlint-with-python
+docker build -t alpine-textlint-with-python .
+docker run -it --rm alpine-textlint-with-python
 ```
 
 ## Licenses
