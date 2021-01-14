@@ -4,10 +4,9 @@
 
 A textlint docker image with python (for ReStructuredText).
 
-- [alpine-textlint-with-python](#alpine-textlint-with-python)
--|-[What-is-it?](##What-is-it?)
--|-[How-to-use-this?](##How-to-use-this?)
- + [Licenses](##Licenses)
+- [What-is-it?](##What-is-it?)
+- [How-to-use-this?](##How-to-use-this?)
+- [Licenses](##Licenses)
 
 ## What is it?
 
