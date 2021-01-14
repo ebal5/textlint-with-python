@@ -1,5 +1,8 @@
 FROM python:alpine as py
 FROM node:alpine
+LABEL maintainer="ebal5 on GitHub <eval.scheme@gmail.com>" \
+  version=1.3 \
+  description="textlint with python and many rules"
 COPY --from=py /usr/local/ /usr/local
 RUN npm install --global \
   textlint-rule-no-todo \
