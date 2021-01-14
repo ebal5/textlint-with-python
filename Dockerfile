@@ -94,6 +94,6 @@ RUN npm install --global \
   textlint-plugin-latex2e \
   textlint-plugin-asciidoctor \
   textlint-plugin-jsx
-ADD .textlintrc /root
+COPY .textlintrc /root
 WORKDIR /work
 ENTRYPOINT []
