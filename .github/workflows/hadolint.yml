@@ -1,0 +1,12 @@
+name: Linting Dockerfile
+
+on: [push, pull_request]
+
+jobs:
+
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: lint Dockerfile
+        run: docker run --rm -i hadolint/hadolint < Dockerfile
