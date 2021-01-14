@@ -1,10 +1,12 @@
 # alpine-textlint-with-python
+![Linting Dockerfile](https://github.com/ebal5/textlint-with-python/workflows/Linting%20Dockerfile/badge.svg?branch=master)
+![Docker Image CI](https://github.com/ebal5/textlint-with-python/workflows/Docker%20Image%20CI/badge.svg)
 
 A textlint docker image with python (for ReStructuredText).
 
 - [alpine-textlint-with-python](#alpine-textlint-with-python)
- + [What is it?](##What is it?)
- + [How to use this?](##How to use this?)
+-|-[What-is-it?](##What-is-it?)
+-|-[How-to-use-this?](##How-to-use-this?)
  + [Licenses](##Licenses)
 
 ## What is it?
@@ -22,7 +24,7 @@ docker run -it --rm -v $(pwd):/root/doc  ebal/textlint-with-python textlint /roo
 ### DockerHub
 
 ```shell
-docker pull ebal/textlint-with-python
+docker pull ebal/textlint-with-python:latest
 ```
 
 ### Build
@@ -32,8 +34,10 @@ docker build -t alpine-textlint-with-python .
 docker run -it --rm alpine-textlint-with-python
 ```
 
+## History
+
+- **2021-01-14** Release version 1.2 as v1.2
+
 ## Licenses
 
 The code in this repository, unless otherwise noted, is MIT licensed. See the `LICENSE` file in this repository.
-
-- [docker-library/python](https://github.com/docker-library/python) 3.7-alpine :: MIT
