@@ -4,6 +4,7 @@ LABEL maintainer="ebal5 on GitHub <eval.scheme@gmail.com>" \
   version=1.3 \
   description="textlint with python and many rules"
 COPY --from=py /usr/local/ /usr/local
+RUN apk add git
 RUN npm install --global \
   textlint-rule-no-todo \
   textlint-rule-no-start-duplicated-conjunction \
